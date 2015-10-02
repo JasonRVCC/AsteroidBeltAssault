@@ -1,0 +1,2 @@
+C:\Users\G00136378\Documents\Visual Studio 2012\Asteroid Belt Assault\Asteroid Belt Assault\Asteroid Belt AssaultContent\obj\x86\Debug\Asteroid Belt AssaultContent.contentprojResolveAssemblyReference.cache
+C:\Users\G00136378\Desktop\GitHub\AsteroidBeltAssault\Asteroid Belt Assault\Asteroid Belt Assault\Asteroid Belt AssaultContent\obj\x86\Debug\Asteroid Belt AssaultContent.contentprojResolveAssemblyReference.cache

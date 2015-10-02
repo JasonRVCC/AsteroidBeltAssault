@@ -1,0 +1,16 @@
+C:\Users\G00136378\Documents\Visual Studio 2012\Asteroid Belt Assault\Asteroid Belt Assault\Asteroid Belt Assault\obj\x86\Debug\Asteroid Belt Assault.csprojResolveAssemblyReference.cache
+C:\Users\G00136378\Documents\Visual Studio 2012\Asteroid Belt Assault\Asteroid Belt Assault\Asteroid Belt Assault\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\G00136378\Documents\Visual Studio 2012\Asteroid Belt Assault\Asteroid Belt Assault\Asteroid Belt Assault\bin\x86\Debug\Content\Textures\SpriteSheet.xnb
+C:\Users\G00136378\Documents\Visual Studio 2012\Asteroid Belt Assault\Asteroid Belt Assault\Asteroid Belt Assault\bin\x86\Debug\Content\Textures\TitleScreen.xnb
+C:\Users\G00136378\Documents\Visual Studio 2012\Asteroid Belt Assault\Asteroid Belt Assault\Asteroid Belt Assault\bin\x86\Debug\Asteroid Belt Assault.exe
+C:\Users\G00136378\Documents\Visual Studio 2012\Asteroid Belt Assault\Asteroid Belt Assault\Asteroid Belt Assault\bin\x86\Debug\Asteroid Belt Assault.pdb
+C:\Users\G00136378\Documents\Visual Studio 2012\Asteroid Belt Assault\Asteroid Belt Assault\Asteroid Belt Assault\obj\x86\Debug\Asteroid Belt Assault.exe
+C:\Users\G00136378\Documents\Visual Studio 2012\Asteroid Belt Assault\Asteroid Belt Assault\Asteroid Belt Assault\obj\x86\Debug\Asteroid Belt Assault.pdb
+C:\Users\G00136378\Desktop\GitHub\AsteroidBeltAssault\Asteroid Belt Assault\Asteroid Belt Assault\Asteroid Belt Assault\bin\x86\Debug\Content\Textures\SpriteSheet.xnb
+C:\Users\G00136378\Desktop\GitHub\AsteroidBeltAssault\Asteroid Belt Assault\Asteroid Belt Assault\Asteroid Belt Assault\bin\x86\Debug\Content\Textures\TitleScreen.xnb
+C:\Users\G00136378\Desktop\GitHub\AsteroidBeltAssault\Asteroid Belt Assault\Asteroid Belt Assault\Asteroid Belt Assault\bin\x86\Debug\Asteroid Belt Assault.exe
+C:\Users\G00136378\Desktop\GitHub\AsteroidBeltAssault\Asteroid Belt Assault\Asteroid Belt Assault\Asteroid Belt Assault\bin\x86\Debug\Asteroid Belt Assault.pdb
+C:\Users\G00136378\Desktop\GitHub\AsteroidBeltAssault\Asteroid Belt Assault\Asteroid Belt Assault\Asteroid Belt Assault\obj\x86\Debug\Asteroid Belt Assault.csprojResolveAssemblyReference.cache
+C:\Users\G00136378\Desktop\GitHub\AsteroidBeltAssault\Asteroid Belt Assault\Asteroid Belt Assault\Asteroid Belt Assault\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\G00136378\Desktop\GitHub\AsteroidBeltAssault\Asteroid Belt Assault\Asteroid Belt Assault\Asteroid Belt Assault\obj\x86\Debug\Asteroid Belt Assault.exe
+C:\Users\G00136378\Desktop\GitHub\AsteroidBeltAssault\Asteroid Belt Assault\Asteroid Belt Assault\Asteroid Belt Assault\obj\x86\Debug\Asteroid Belt Assault.pdb
