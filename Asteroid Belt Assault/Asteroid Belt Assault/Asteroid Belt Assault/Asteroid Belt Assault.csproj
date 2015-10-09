@@ -108,13 +108,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AsteroidManager.cs" />
+    <Compile Include="CollisionManager.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="EnemyManager.cs" />
+    <Compile Include="ExplosionManager.cs" />
+    <Compile Include="Particle.cs" />
     <Compile Include="PlayerManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="ShotManager.cs" />
+    <Compile Include="SoundManager.cs" />
     <Compile Include="Sprite.cs" />
     <Compile Include="StarField.cs" />
   </ItemGroup>

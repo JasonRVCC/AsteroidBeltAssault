@@ -20,8 +20,7 @@ namespace Asteroid_Belt_Assault
         SpriteBatch spriteBatch;
 
         enum GameStates { TitleScreen, Playing, PlayerDead, GameOver };
-        //TODO: change back to tiltle screen
-        GameStates gameState = GameStates.Playing;
+        GameStates gameState = GameStates.TitleScreen;
         
         Texture2D titleScreen;
         Texture2D spriteSheet;
@@ -30,6 +29,24 @@ namespace Asteroid_Belt_Assault
         AsteroidManager asteroidManager;
         PlayerManager playerManager;
         EnemyManager enemyManager;
+        ExplosionManager explosionManager;
+        CollisionManager collisionManager;
+
+        SpriteFont pericles14;
+
+        private float playerDeathDelayTime = 6f;
+        private float playerDeathTimer = 0f;
+        private float titleScreenTimer = 0f;
+        private float titleScreenDelayTime = 1f;
+
+        private int playerStartingLives = 3;
+        private Vector2 playerStartLocation = new Vector2(390, 550);
+        private Vector2 scoreLocation = new Vector2(20, 10);
+        private Vector2 livesLocation = new Vector2(20, 25);
+
+        //Added random game over text
+        Random rand = new Random();
+        private string gameOverText = "G A M E  O V E R !";
 
         public Game1()
         {
@@ -74,6 +91,16 @@ namespace Asteroid_Belt_Assault
             enemyManager = new EnemyManager(spriteSheet, new Rectangle(0,200,50,50), 6, playerManager,
                 new Rectangle(0, 0, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height));
 
+            explosionManager = new ExplosionManager(spriteSheet, new Rectangle(0, 100, 50, 50), 3,
+                new Rectangle(0, 450, 2, 2));
+
+            collisionManager = new CollisionManager(asteroidManager, playerManager, enemyManager, 
+                explosionManager);
+
+            pericles14 = Content.Load<SpriteFont>(@"Fonts\Pericles14");
+
+            SoundManager.Initialize(Content);
+
         }
 
         /// <summary>
@@ -99,6 +126,19 @@ namespace Asteroid_Belt_Assault
             switch (gameState)
             {
                 case GameStates.TitleScreen:
+                    titleScreenTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+                    if(titleScreenTimer >= titleScreenDelayTime)
+                    {
+                        if((Keyboard.GetState().IsKeyDown(Keys.Space)) || 
+                            (GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed))
+                        {
+                            playerManager.livesRemaining = playerStartingLives;
+                            playerManager.playerScore = 0;
+                            resetGame();
+                            gameState = GameStates.Playing;
+                        }
+                    }
                     break;
 
                 case GameStates.Playing:
@@ -106,12 +146,74 @@ namespace Asteroid_Belt_Assault
                     asteroidManager.Update(gameTime);
                     playerManager.Update(gameTime);
                     enemyManager.Update(gameTime);
+                    explosionManager.Update(gameTime);
+                    collisionManager.CheckCollisions();
+
+                    if (playerManager.destroyed)
+                    {
+                        playerDeathTimer = 0f;
+                        enemyManager.active = false;
+                        playerManager.livesRemaining--;
+
+                        if (playerManager.livesRemaining < 0)
+                        {
+                            switch (rand.Next(0,9))
+                            {
+                                case 0: case 6: case 7: case 8: case 9:
+                                    gameOverText = "G A M E  O V E R !";
+                                    break;
+                                case 1:
+                                    gameOverText = "Y E R  D E A D !";
+                                    break;
+                                case 2:
+                                    gameOverText = "N O O O O O O O O O O O O O O O O !";
+                                    break;
+                                case 3:
+                                    gameOverText = "M I S S I O N  F A I L E D";
+                                    break;
+                                case 4:
+                                    gameOverText = "F I S S I O N  M A I L E D";
+                                    break;
+                                case 5:
+                                    gameOverText = "T R Y  A G A I N ?";
+                                    break;
+                            }
+                            gameState = GameStates.GameOver;
+                        }
+                        else
+                        { gameState = GameStates.PlayerDead; }
+                    }
                     break;
 
                 case GameStates.PlayerDead:
+                    playerDeathTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+                    starField.Update(gameTime);
+                    asteroidManager.Update(gameTime);
+                    enemyManager.Update(gameTime);
+                    playerManager.PlayerShotManager.Update(gameTime);
+                    explosionManager.Update(gameTime);
+
+                    if (playerDeathTimer >= playerDeathDelayTime)
+                    {
+                        resetGame();
+                        gameState = GameStates.Playing;
+                    }
                     break;
 
                 case GameStates.GameOver:
+                    playerDeathTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+                    starField.Update(gameTime);
+                    asteroidManager.Update(gameTime);
+                    enemyManager.Update(gameTime);
+                    playerManager.PlayerShotManager.Update(gameTime);
+                    explosionManager.Update(gameTime);
+
+                    if (playerDeathTimer >= playerDeathDelayTime)
+                    {
+                        gameState = GameStates.TitleScreen;
+                    }
                     break;
             }
 
@@ -141,15 +243,42 @@ namespace Asteroid_Belt_Assault
                 asteroidManager.Draw(spriteBatch);
                 playerManager.Draw(spriteBatch);
                 enemyManager.Draw(spriteBatch);
+                explosionManager.Draw(spriteBatch);
+
+                spriteBatch.DrawString(pericles14, "Score: " + playerManager.playerScore.ToString(),
+                    scoreLocation, Color.White);
+
+                if (playerManager.livesRemaining >= 0)
+                {
+                    spriteBatch.DrawString(pericles14, "Ships Remaining: " +
+                        playerManager.livesRemaining.ToString(), livesLocation, Color.White);
+                }
             }
 
             if (gameState == GameStates.GameOver)
             {
+                spriteBatch.DrawString(pericles14, gameOverText, 
+                    new Vector2(this.Window.ClientBounds.Width / 2 -
+                        pericles14.MeasureString(gameOverText).X / 2, 50), Color.White);
             }
 
             spriteBatch.End();
 
             base.Draw(gameTime);
         }
+
+        private void resetGame()
+        {
+            playerManager.playerSprite.Location = playerStartLocation;
+            foreach (Sprite asteroid in asteroidManager.Asteroids)
+            {asteroid.Location = new Vector2 (-500,-500);}
+            
+            enemyManager.Enemies.Clear();
+            enemyManager.active = true;
+            playerManager.PlayerShotManager.Shots.Clear();
+            enemyManager.EnemyShotManager.Shots.Clear();
+            playerManager.destroyed=false;
+        }
+
     }
 }

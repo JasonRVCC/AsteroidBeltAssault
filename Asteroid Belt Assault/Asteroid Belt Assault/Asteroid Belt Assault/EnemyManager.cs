@@ -31,7 +31,7 @@ namespace Asteroid_Belt_Assault
 
         private Dictionary<int, int> waveSpawns = new Dictionary<int, int>();
 
-        public bool active = true;
+        public bool active = false;
         private Random rand = new Random();
 
         public EnemyManager(Texture2D texture, Rectangle initialFrame, int frameCount,
